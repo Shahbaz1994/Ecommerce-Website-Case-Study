@@ -8,5 +8,5 @@ for the investors while you’re at it.
 As an Analyst, the first part of your job is extracting and analyzing the data. The next (equally
 important) part is communicating the story effectively to your stakeholders.
 
-![Tables-relation](Tables-relation.png)
+![Tables-Relation](Tables-Relation.png)
 
