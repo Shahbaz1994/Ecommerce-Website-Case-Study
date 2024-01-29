@@ -8,14 +8,14 @@ for the investors while you’re at it.
 As an Analyst, the first part of your job is extracting and analyzing the data. The next (equally
 important) part is communicating the story effectively to your stakeholders.
 
-![Tables-relation](Tables-relation.png)
+![Tables-Relation](Tables-Relation.png)
 
 ## Task 1: Volume Growth Analysis
 
 - [ ] Pull overall session and order volume trended by quarter for the life of the business.
 - [ ] Decide on how to handle the most recent incomplete quarter.
 
-
+```
 SELECT 
 	YEAR(website_sessions.created_at) AS yr,
 	QUARTER(website_sessions.created_at) AS qtr, 
@@ -27,13 +27,14 @@ FROM website_sessions
 GROUP BY 1,2
 ORDER BY 1,2
 ;
+```
 
 ## Task 2: Showcase Efficiency Improvements
 
 - [ ] Showcase quarterly figures, since the launch, for session-to-order conversion rate.
 - [ ] Showcase quarterly figures, since the launch, for revenue per order.
 - [ ] Showcase quarterly figures, since the launch, for revenue per session.
-
+```
 SELECT 
 	YEAR(website_sessions.created_at) AS yr,
 	QUARTER(website_sessions.created_at) AS qtr, 
@@ -46,11 +47,11 @@ FROM website_sessions
 GROUP BY 1,2
 ORDER BY 1,2
 ;
-
+```
 ## Task 3: Growth Analysis of Specific Channels
 
 - [ ] Pull quarterly orders from Gsearch nonbrand, Bsearch nonbrand, brand search overall, organic search, and direct type-in.
-
+```
 SELECT 
 	YEAR(website_sessions.created_at) AS yr,
 	QUARTER(website_sessions.created_at) AS qtr, 
@@ -65,14 +66,14 @@ FROM website_sessions
 		ON website_sessions.website_session_id = orders.website_session_id
 GROUP BY 1,2
 ORDER BY 1,2
-
+```
 
 ## Task 4: Analyze Session-to-Order Conversion Rate Trends
 
 - [ ] Show quarterly trends for session-to-order conversion rates.
 - [ ] Break down the analysis for Gsearch nonbrand, Bsearch nonbrand, brand search overall, organic search, and direct type-in.
 - [ ] Make note of any periods with significant improvements or optimizations.
-
+```
 SELECT 
 	YEAR(website_sessions.created_at) AS yr,
 	QUARTER(website_sessions.created_at) AS qtr, 
@@ -92,13 +93,13 @@ FROM website_sessions
 GROUP BY 1,2
 ORDER BY 1,2
 ;
-
+```
 ## Task 5: Monthly Revenue and Margin Analysis by Product
 
 - [ ] Pull monthly trends for revenue and margin by product.
 - [ ] Include total sales and revenue in the analysis.
 - [ ] Make notes regarding any observed patterns or seasonality.
-
+```
 SELECT
 	YEAR(created_at) AS yr, 
     MONTH(created_at) AS mo, 
@@ -116,13 +117,13 @@ FROM order_items
 GROUP BY 1,2
 ORDER BY 1,2
 ;
-
+```
 ## Task 6: Analyze Impact of Introducing New Products
 
 - [ ] Pull monthly sessions to the /products page.
 - [ ] Show the change in the percentage of those sessions clicking through to another page over time.
 - [ ] Provide a view of how the conversion from /products to placing an order has improved.
-
+```
 -- first, identifying all the views of the /products page
 CREATE TEMPORARY TABLE products_pageviews
 SELECT
@@ -133,8 +134,8 @@ SELECT
 FROM website_pageviews 
 WHERE pageview_url = '/products'
 ;
-
-
+```
+```
 SELECT 
 	YEAR(saw_product_page_at) AS yr, 
     MONTH(saw_product_page_at) AS mo,
@@ -151,12 +152,12 @@ FROM products_pageviews
 		ON orders.website_session_id = products_pageviews.website_session_id
 GROUP BY 1,2
 ;
-
+```
 ## Task 7: Analyze Cross-Selling Impact of 4th Product Introduction
 
 - [ ] Pull sales data since December 05, 2014, for the 4th product introduced as a primary product.
 - [ ] Evaluate the cross-selling performance of each product to one another.
-
+```
 CREATE TEMPORARY TABLE primary_products
 SELECT 
 	order_id, 
@@ -165,7 +166,8 @@ SELECT
 FROM orders 
 WHERE created_at > '2014-12-05' -- when the 4th product was added (says so in question)
 ;
-
+```
+```
 SELECT
 	primary_products.*, 
     order_items.product_id AS cross_sell_product_id
@@ -173,9 +175,9 @@ FROM primary_products
 	LEFT JOIN order_items 
 		ON order_items.order_id = primary_products.order_id
         AND order_items.is_primary_item = 0; -- only bringing in cross-sells;
+```
 
-
-
+```
 
 SELECT 
 	primary_product_id, 
@@ -199,5 +201,5 @@ FROM primary_products
         AND order_items.is_primary_item = 0 -- only bringing in cross-sells
 ) AS primary_w_cross_sell
 GROUP BY 1;
-
+```
 
