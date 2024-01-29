@@ -28,7 +28,24 @@ GROUP BY 1,2
 ORDER BY 1,2
 ;
 ```
+| yr   | qtr | sessions | orders |
+|------|---------|----------|--------|
+| 2012 | 1       | 1879     | 60     |
+| 2012 | 2       | 11433    | 347    |
+| 2012 | 3       | 16892    | 684    |
+| 2012 | 4       | 32266    | 1495   |
+| 2013 | 1       | 19833    | 1273   |
+| 2013 | 2       | 24745    | 1718   |
+| 2013 | 3       | 27663    | 1840   |
+| 2013 | 4       | 40540    | 2616   |
+| 2014 | 1       | 46779    | 3069   |
+| 2014 | 2       | 53129    | 3848   |
+| 2014 | 3       | 57141    | 4035   |
+| 2014 | 4       | 76373    | 5908   |
+| 2015 | 1       | 64198    | 5420   |
 
+Our business is on the rise! The latest numbers, even though the last quarter is incomplete, show strong growth in both sessions and order volumes. Things are looking up! 
+For the last incomplete quarter, we've opted to exclude it from our analysis to ensure a consistent and reliable trend across complete data points.
 ## Task 2: Showcase Efficiency Improvements
 
 - [ ] Showcase quarterly figures, since the launch, for session-to-order conversion rate.
@@ -48,6 +65,24 @@ GROUP BY 1,2
 ORDER BY 1,2
 ;
 ```
+| yr   | qtr | sessions_to_order_cov_rate | revenue_per_order | revenue_per_session |
+|------|-----|---------------------------|-------------------|----------------------|
+| 2012 | 1   | 0.0319                    | 49.990000         | 1.596275             |
+| 2012 | 2   | 0.0304                    | 49.990000         | 1.517233             |
+| 2012 | 3   | 0.0405                    | 49.990000         | 2.024222             |
+| 2012 | 4   | 0.0463                    | 49.990000         | 2.316217             |
+| 2013 | 1   | 0.0642                    | 52.142396         | 3.346809             |
+| 2013 | 2   | 0.0694                    | 51.538312         | 3.578211             |
+| 2013 | 3   | 0.0665                    | 51.734533         | 3.441114             |
+| 2013 | 4   | 0.0645                    | 54.715688         | 3.530741             |
+| 2014 | 1   | 0.0656                    | 62.160684         | 4.078136             |
+| 2014 | 2   | 0.0724                    | 64.374207         | 4.662462             |
+| 2014 | 3   | 0.0706                    | 64.494949         | 4.554298             |
+| 2014 | 4   | 0.0774                    | 63.793497         | 4.934885             |
+| 2015 | 1   | 0.0844                    | 62.799917         | 5.301965             |
+
+The session-to-order conversion rate surged from 3% to approximately 8% in the latest quarter, showcasing a substantial improvement in website engagement. Concurrently, the revenue per order witnessed significant growth, and the revenue per session skyrocketed from $1.59 to over $5, indicating a remarkable increase in the value derived from each customer interaction.
+
 ## Task 3: Growth Analysis of Specific Channels
 
 - [ ] Pull quarterly orders from Gsearch nonbrand, Bsearch nonbrand, brand search overall, organic search, and direct type-in.
@@ -67,6 +102,23 @@ FROM website_sessions
 GROUP BY 1,2
 ORDER BY 1,2
 ```
+| yr   | qtr | gsearch_nonbrand_orders | bsearch_nonbrand_orders | brand_search_orders | organic_search_orders | direct_type_in_orders |
+|------|-----|-------------------------|-------------------------|----------------------|------------------------|------------------------|
+| 2012 | 1   | 60                      | 0                       | 0                    | 0                      | 0                      |
+| 2012 | 2   | 291                     | 0                       | 20                   | 15                     | 21                     |
+| 2012 | 3   | 482                     | 82                      | 48                   | 40                     | 32                     |
+| 2012 | 4   | 913                     | 311                     | 88                   | 94                     | 89                     |
+| 2013 | 1   | 766                     | 183                     | 108                  | 125                    | 91                     |
+| 2013 | 2   | 1114                    | 237                     | 114                  | 134                    | 119                    |
+| 2013 | 3   | 1132                    | 245                     | 153                  | 167                    | 143                    |
+| 2013 | 4   | 1657                    | 291                     | 248                  | 223                    | 197                    |
+| 2014 | 1   | 1667                    | 344                     | 354                  | 338                    | 311                    |
+| 2014 | 2   | 2208                    | 427                     | 410                  | 436                    | 367                    |
+| 2014 | 3   | 2259                    | 434                     | 432                  | 445                    | 402                    |
+| 2014 | 4   | 3248                    | 683                     | 615                  | 605                    | 532                    |
+| 2015 | 1   | 3025                    | 581                     | 622                  | 640                    | 552                    |
+
+The investor would be particularly interested in the increase of brand-search-orders, organic-search-orders, and direct-type-in-orders.
 
 ## Task 4: Analyze Session-to-Order Conversion Rate Trends
 
